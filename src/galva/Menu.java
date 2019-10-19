@@ -23,7 +23,7 @@ public class Menu extends JMenuBar
 	{
 		MenuFieldsInit();
 		
-		filesItemsnit();
+		filesItemsInit();
 		filesActionListenerInit();
 		
 		editItemsInit();
@@ -66,7 +66,7 @@ public class Menu extends JMenuBar
 		});
 	}
 
-	private void filesItemsnit() 
+	private void filesItemsInit() 
 	{
 		exit = new JMenuItem("Exit");	
 		file.add(exit);

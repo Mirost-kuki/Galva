@@ -1,17 +1,17 @@
 package galva;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 public class Galva extends JFrame
 {
 	private static final long serialVersionUID = 6538101122351606537L;
 
-	Menu menu;
+	private Menu menu;
+	private TableOfOrders tableOfOrders;
+	private DataBase dataBase;
 	
 	public Galva()
 	{
@@ -20,7 +20,11 @@ public class Galva extends JFrame
 		setLocationRelativeTo(null);
 		setFocusable(true);
 		
+		dataBase = new DataBase();
+		dataBase.initDataBase();
+		
 		menu = new Menu();
+		tableOfOrders = new TableOfOrders(dataBase.getOrderList());
 		
 		WindowLayout();
 		pack();
@@ -28,10 +32,13 @@ public class Galva extends JFrame
 	
 	private void WindowLayout()
 	{
-		this.getRootPane().setBorder(BorderFactory.createMatteBorder(8, 8, 8, 8, Color.GRAY));
 		this.getContentPane().setLayout(new BorderLayout(8, 6));
 		
 		setJMenuBar(menu);
+		
+		JScrollPane scrollPane = new JScrollPane(tableOfOrders);
+		
+		this.getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
 	}
 

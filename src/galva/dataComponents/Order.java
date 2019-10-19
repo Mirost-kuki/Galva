@@ -15,6 +15,7 @@ public class Order
 	private ORDER_STATE orderState;
 	private boolean acceptedOnWeldon;
 	private boolean invoiced;
+	private int weight;
 	private String notes;
 	
 	public Order(Client client)
@@ -28,6 +29,17 @@ public class Order
 		this.orderState = ORDER_STATE.FreshlyReceived;
 		this.acceptedOnWeldon = false;
 		this.invoiced = false;
+		
+	}
+	public Order(Client client, int weight)
+	{
+		this(client);
+		this.weight = weight;
+	}
+	public Order(Client client, ArrayList<Ware> wares, int weight)
+	{
+		this(client, weight);
+		this.wares = wares;
 		
 	}
 
@@ -105,7 +117,12 @@ public class Order
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	
 
-	
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}	
 }
