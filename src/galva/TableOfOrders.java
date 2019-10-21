@@ -1,32 +1,29 @@
 package galva;
 
-import java.awt.Dimension;
 import java.util.ArrayList;
-import javax.swing.JTable;
 import galva.dataComponents.Order;
 
-public class TableOfOrders extends JTable{
+public class TableOfOrders 
+{
 
-	private static final long serialVersionUID = -5884388428724206229L;
+	public static final String[] FIELD_NAMES= {"ID", "Odbiorca", "Numer telefonu", "Towar", "Data przyjêcia", "Stan", "Zafakturowane", "Notatki"};
 	
-	private static final String[] FIELD_NAMES= {"ID", "Odbiorca"};
-	
-	private static Object[][] data = convert();
+	private ArrayList<Order> orderList;
 	
 	public TableOfOrders(ArrayList<Order> orderList)
 	{
-		super(data, FIELD_NAMES);
-		setPreferredScrollableViewportSize(new Dimension(600, 800));
-		setFillsViewportHeight(true);
+		this.orderList = orderList;
 	}
 	
-	private static Object[][] convert()
+	public Object[][] convertToTable()
 	{
-		Object[][] data = 
-			{
-					{"1", "Nowak"},
-					{"2", "Mikke"}
-			};
+		Object[][] data = new Object[1][FIELD_NAMES.length];
+		
+		Object[] dataRow = {orderList.get(0).getId(), orderList.get(0).getClient().getName(), orderList.get(0).getClient().getPhoneNumber1(), 
+				orderList.get(0).getWaresListToString(), orderList.get(0).getDateOfAcceptance(), orderList.get(0).getOrderState(), 
+				orderList.get(0).isInvoiced(), orderList.get(0).getNotes()};
+		data[0] = dataRow;
+		
 		return data;
 	}
 }

@@ -1,9 +1,14 @@
 package galva;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+
+import galva.dataComponents.ORDER_STATE;
 
 public class Galva extends JFrame
 {
@@ -36,10 +41,16 @@ public class Galva extends JFrame
 		
 		setJMenuBar(menu);
 		
-		JScrollPane scrollPane = new JScrollPane(tableOfOrders);
+		Object[][] data = TableOfOrders.convertToTable();/*{
+				{"1", "Adam", "50448875", "1 x s³upek", "dzisiaj", ORDER_STATE.FreshlyReceived , false},
+				{"2", "Jan", "50448875", "2 x s³upek", "dzisiaj", ORDER_STATE.FreshlyReceived , false}
+		};*/
 		
+		JTable table = new JTable(data, TableOfOrders.FIELD_NAMES);
+		table.setPreferredScrollableViewportSize(new Dimension(600, 800));
+		table.setFillsViewportHeight(true);
+		JScrollPane scrollPane = new JScrollPane(table);
 		this.getContentPane().add(scrollPane, BorderLayout.CENTER);
-		
 	}
 
 	public static void main(String[] args) 

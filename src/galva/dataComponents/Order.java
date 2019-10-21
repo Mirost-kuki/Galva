@@ -13,7 +13,6 @@ public class Order
 	private ArrayList<Ware> wares;
 	private Date dateOfAcceptance;
 	private ORDER_STATE orderState;
-	private boolean acceptedOnWeldon;
 	private boolean invoiced;
 	private int weight;
 	private String notes;
@@ -27,7 +26,6 @@ public class Order
 		this.wares = new ArrayList<Ware>();
 		this.dateOfAcceptance = new Date();
 		this.orderState = ORDER_STATE.FreshlyReceived;
-		this.acceptedOnWeldon = false;
 		this.invoiced = false;
 		
 	}
@@ -57,6 +55,18 @@ public class Order
 
 	public ArrayList<Ware> getWares() {
 		return wares;
+	}
+	
+	public String getWaresListToString() {
+	
+		StringBuilder stringBuilder = new StringBuilder("");
+		
+		for(Ware ware : this.wares)
+		{
+			stringBuilder.append(ware.getQuantity() + " x " + ware.getName() + "\n");
+		}
+		
+		return stringBuilder.toString();
 	}
 
 	public void setWares(ArrayList<Ware> wares) {
@@ -92,14 +102,6 @@ public class Order
 
 	public void setOrderState(ORDER_STATE orderState) {
 		this.orderState = orderState;
-	}
-
-	public boolean isAcceptedOnWeldon() {
-		return acceptedOnWeldon;
-	}
-
-	public void setAcceptedOnWeldon(boolean acceptedOnWeldon) {
-		this.acceptedOnWeldon = acceptedOnWeldon;
 	}
 
 	public boolean isInvoiced() {
